@@ -1,87 +1,69 @@
 # AI Sheikh
 
-English | [中文](README_zh.md) | [Documents](https://docs.ai-Sheikh.com/#/en/)
+[English](README.md) | 中文 | [文档](https://docs.ai-Sheikh.com)
 
 [![GitHub stars](https://img.shields.io/github/stars/simpleyyt/ai-Sheikh?style=social)](https://github.com/simpleyyt/ai-Sheikh/stargazers)
 &ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AI Sheikh is a general-purpose AI Agent system that supports running various tools and operations in a sandbox environment.
+AI Sheikh 是一个通用的 AI Agent 系统，支持在沙盒环境中运行各种工具和操作。
 
-Enjoy your own agent with AI Sheikh!
+用 AI Sheikh 开启你的智能体之旅吧！
 
-👏 Join [QQ Group(1005477581)](https://qun.qq.com/universal-share/share?ac=1&authKey=p4X3Da5iMpR4liAenxwvhs7IValPKiCFtUevRlJouz9qSTSZsMnPJc3hzsJjgQYv&busi_data=eyJncm91cENvZGUiOiIxMDA1NDc3NTgxIiwidG9rZW4iOiJNZmUrTmQ0UzNDZDNqNDFVdjVPS1VCRkJGRWVlV0R3RFJSRVFoZDAwRjFDeUdUM0t6aUIyczlVdzRjV1BYN09IIiwidWluIjoiMzQyMjExODE1In0%3D&data=C3B-E6BlEbailV32co77iXL5vxPIhtD9y_itWLSq50hKqosO_55_isOZym2Faaq4hs9-517tUY8GSWaDwPom-A&svctype=4&tempid=h5_group_info)
+👏 欢迎加入 [QQ群(1005477581)](https://qun.qq.com/universal-share/share?ac=1&authKey=p4X3Da5iMpR4liAenxwvhs7IValPKiCFtUevRlJouz9qSTSZsMnPJc3hzsJjgQYv&busi_data=eyJncm91cENvZGUiOiIxMDA1NDc3NTgxIiwidG9rZW4iOiJNZmUrTmQ0UzNDZDNqNDFVdjVPS1VCRkJGRWVlV0R3RFJSRVFoZDAwRjFDeUdUM0t6aUIyczlVdzRjV1BYN09IIiwidWluIjoiMzQyMjExODE1In0%3D&data=C3B-E6BlEbailV32co77iXL5vxPIhtD9y_itWLSq50hKqosO_55_isOZym2Faaq4hs9-517tUY8GSWaDwPom-A&svctype=4&tempid=h5_group_info)
 
-## Demos
+## 示例
 
-### Basic Features
+### 基本功能
 
 https://github.com/user-attachments/assets/37060a09-c647-4bcb-920c-959f7fa73ebe
 
 ### Browser Use
 
-* Task: Latest LLM papers
+* 任务：llm 最新论文
 
-<https://github.com/user-attachments/assets/4e35bc4d-024a-4617-8def-a537a94bd285>
+https://github.com/user-attachments/assets/8f7788a4-fbda-49f5-b836-949a607c64ac
 
 ### Code Use
 
-* Task: Write a complex Python example
+* 任务：写一个复杂的 python 示例
 
-<https://github.com/user-attachments/assets/765ea387-bb1c-4dc2-b03e-716698feef77>
+https://github.com/user-attachments/assets/5cb2240b-0984-4db0-8818-a24f81624b04
 
 
-## Key Features
+## 主要特性
 
- * Deployment: Minimal deployment requires only an LLM service, with no dependency on other external services.
- * Tools: Supports Terminal, Browser, File, Web Search, and messaging tools with real-time viewing and takeover capabilities, supports external MCP tool integration.
- * Sandbox: Each task is allocated a separate sandbox that runs in a local Docker environment.
- * Task Sessions: Session history is managed through MongoDB/Redis, supporting background tasks.
- * Conversations: Supports stopping and interrupting, file upload and download.
- * Multilingual: Supports both Chinese and English.
- * Authentication: User login and authentication.
+ * 部署：最小只需要一个 LLM 服务即可完成部署，不需要依赖其它外部服务。
+ * 工具：支持 Terminal、Browser、File、Web Search、消息工具，并支持实查看和接管，支持外部 MCP 工具集成。
+ * 沙盒：每个 Task 会分配单独的一个沙盒，沙盒在本地 Dock 环境里面运行。
+ * 任务会话：通过 Mongo/Redis 对会话历史进行管理，支持后台任务。
+ * 对话：支持停止与打断，支持文件上传与下载。
+ * 多语言：支持中文与英文。
+ * 认证：用户登录与认证。
 
-## Development Roadmap
+## 开发计划
 
- * Tools: Support for Deploy & Expose.
- * Sandbox: Support for mobile and Windows computer access.
- * Deployment: Support for K8s and Docker Swarm multi-cluster deployment.
+ * 工具：支持 Deploy & Expose。
+ * 沙盒：支持手机与 Windows 电脑接入。
+ * 部署：支持 K8s 和 Dock Swarm 多集群部署。
 
-### Overall Design
+## 环境要求
 
-![Image](https://github.com/user-attachments/assets/69775011-1eb7-452f-adaf-cd6603a4dde5)
-
-**When a user initiates a conversation:**
-
-1. Web sends a request to create an Agent to the Server, which creates a Sandbox through `/var/run/docker.sock` and returns a session ID.
-2. The Sandbox is an Ubuntu Docker environment that starts Chrome browser and API services for tools like File/Shell.
-3. Web sends user messages to the session ID, and when the Server receives user messages, it forwards them to the PlanAct Agent for processing.
-4. During processing, the PlanAct Agent calls relevant tools to complete tasks.
-5. All events generated during Agent processing are sent back to Web via SSE.
-
-**When users browse tools:**
-
-- Browser:
-    1. The Sandbox's headless browser starts a VNC service through xvfb and x11vnc, and converts VNC to websocket through websockify.
-    2. Web's NoVNC component connects to the Sandbox through the Server's Websocket Forward, enabling browser viewing.
-- Other tools: Other tools work on similar principles.
-
-## Environment Requirements
-
-This project primarily relies on Docker for development and deployment, requiring a relatively new version of Docker:
+本项目主要依赖Docker进行开发与部署，需要安装较新版本的Docker：
 - Docker 20.10+
 - Docker Compose
 
-Model capability requirements:
-- Compatible with OpenAI interface
-- Support for FunctionCall
-- Support for Json Format output
+模型能力要求：
+- 兼容OpenAI接口
+- 支持FunctionCall
+- 支持Json Format输出
 
-Deepseek and GPT models are recommended.
+推荐使用Deepseek与GPT模型。
 
-## Deployment Guide
 
-Docker Compose is recommended for deployment:
+## 部署指南
+
+推荐使用Docker Compose进行部署：
 
 <!-- docker-compose-example.yml -->
 ```yaml
@@ -223,40 +205,59 @@ networks:
 ```
 <!-- /docker-compose-example.yml -->
 
-Save as `docker-compose.yml` file, and run:
+保存成`docker-compose.yml`文件，并运行
 
 ```shell
 docker compose up -d
 ```
 
-> Note: If you see `sandbox-1 exited with code 0`, this is normal, as it ensures the sandbox image is successfully pulled locally.
+> 注意：如果提示`sandbox-1 exited with code 0`，这是正常的，这是为了让 sandbox 镜像成功拉取到本地。
 
-Open your browser and visit <http://localhost:5173> to access Sheikh.
+打开浏览器访问<http://localhost:5173>即可访问 Sheikh。
 
-## Development Guide
+## 开发指南
 
-### Project Structure
+### 项目结构
 
-This project consists of three independent sub-projects:
+本项目由三个独立的子项目组成：
 
-* `frontend`: Sheikh frontend
-* `backend`: Sheikh backend
-* `sandbox`: Sheikh sandbox
+* `frontend`: Sheikh 前端
+* `backend`: Sheikh 后端
+* `sandbox`: Sheikh 沙盒
 
-### Environment Setup
+### 整体设计
 
-1. Download the project:
+![Image](https://github.com/user-attachments/assets/69775011-1eb7-452f-adaf-cd6603a4dde5)
+
+**当用户发起对话时：**
+
+1. Web 向 Server 发送创建 Agent 请求，Server 通过`/var/run/docker.sock`创建出 Sandbox，并返回会话 ID。
+2. Sandbox 是一个 Ubuntu Docker 环境，里面会启动 chrome 浏览器及 File/Shell 等工具的 API 服务。
+3. Web 往会话 ID 中发送用户消息，Server 收到用户消息后，将消息发送给 PlanAct Agent 处理。
+4. PlanAct Agent 处理过程中会调用相关工具完成任务。
+5. Agent 处理过程中产生的所有事件通过 SSE 发回 Web。
+
+**当用户浏览工具时：**
+
+- 浏览器：
+    1. Sandbox 的无头浏览器通过 xvfb 与 x11vnc 启动了 vnc 服务，并且通过 websockify 将 vnc 转化成 websocket。
+    2. Web 的 NoVNC 组件通过 Server 的 Websocket Forward 转发到 Sandbox，实现浏览器查看。
+- 其它工具：其它工具原理也是差不多。
+
+### 环境准备
+
+1. 下载项目：
 ```bash
 git clone https://github.com/simpleyyt/ai-Sheikh.git
 cd ai-Sheikh
 ```
 
-2. Copy the configuration file:
+2. 复制配置文件：
 ```bash
 cp .env.example .env
 ```
 
-3. Modify the configuration file:
+3. 修改配置文件：
 
 <!-- .env.example -->
 ```env
@@ -326,44 +327,44 @@ LOG_LEVEL=INFO
 ```
 <!-- /.env.example -->
 
-### Development and Debugging
+### 开发调试
 
-1. Run in debug mode:
+1. 运行调试：
 ```bash
-# Equivalent to docker compose -f docker-compose-development.yaml up
+# 相当于 docker compose -f docker-compose-development.yaml up
 ./dev.sh up
 ```
 
-All services will run in reload mode, and code changes will be automatically reloaded. The exposed ports are as follows:
-- 5173: Web frontend port
-- 8000: Server API service port
-- 8080: Sandbox API service port
-- 5900: Sandbox VNC port
-- 9222: Sandbox Chrome browser CDP port
+各服务会以 reload 模式运行，代码改动会自动重新加载。暴露的端口如下：
+- 5173: Web前端端口
+- 8000: Server API服务端口
+- 8080: Sandbox API服务端口
+- 5900: Sandbox VNC端口
+- 9222: Sandbox Chrome浏览器CDP端口
 
-> *Note: In Debug mode, only one sandbox will be started globally*
+> *注意：在 Debug 模式全局只会启动一个沙盒*
 
-2. When dependencies change (requirements.txt or package.json), clean up and rebuild:
+2. 当依赖变化时（requirements.txt或package.json），清理并重新构建：
 ```bash
-# Clean up all related resources
+# 清理所有相关资源
 ./dev.sh down -v
 
-# Rebuild images
+# 重新构建镜像
 ./dev.sh build
 
-# Run in debug mode
+# 调试运行
 ./dev.sh up
 ```
 
-### Image Publishing
+### 镜像发布
 
 ```bash
 export IMAGE_REGISTRY=your-registry-url
 export IMAGE_TAG=latest
 
-# Build images
+# 构建镜像
 ./run build
 
-# Push to the corresponding image repository
+# 推送到相应的镜像仓库
 ./run push
-``` 
+```
