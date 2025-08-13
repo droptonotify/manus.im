@@ -6,7 +6,7 @@
                 <a href="/">
                     <div class="flex">
                         <Bot :size="30" />
-                        <SheikhLogoTextIcon />
+                        <ManusLogoTextIcon />
                     </div>
                 </a>
             </div>
@@ -180,7 +180,7 @@ import { ref, computed, onMounted, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { Bot, Eye, EyeOff, LoaderCircle } from 'lucide-vue-next'
-import SheikhLogoTextIcon from '@/components/icons/SheikhLogoTextIcon.vue'
+import ManusLogoTextIcon from '../components/icons/ManusLogoTextIcon.vue'
 import { useAuth } from '@/api'
 import { validateUserInput } from '@/utils/auth'
 import { showErrorToast, showSuccessToast } from '@/utils/toast'

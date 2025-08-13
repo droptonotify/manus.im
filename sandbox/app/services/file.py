@@ -305,6 +305,43 @@ class FileService:
             if isinstance(e, (BadRequestException, ResourceNotFoundException)):
                 raise e
             raise AppException(message=f"Failed to ensure file: {str(e)}")
+            
+    async def delete_file(self, file: str, sudo: bool = False) -> FileDeleteResult:
+        """
+        Asynchronously delete a file
+        
+        Args:
+            file: Absolute file path to delete
+            sudo: Whether to use sudo privileges
+        """
+        try:
+            # Check if file exists
+            if not os.path.exists(file):
+                raise ResourceNotFoundException(f"File does not exist: {file}")
+                
+            if sudo:
+                command = f"sudo rm -f '{file}'"
+                process = await asyncio.create_subprocess_shell(
+                    command,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE
+                )
+                stdout, stderr = await process.communicate()
+                
+                if process.returncode != 0:
+                    raise BadRequestException(f"Failed to delete file: {stderr.decode()}")
+            else:
+                await asyncio.to_thread(os.unlink, file)
+                
+            return FileDeleteResult(
+                file=file,
+                deleted=True,
+                message="File successfully deleted"
+            )
+        except Exception as e:
+            if isinstance(e, (BadRequestException, ResourceNotFoundException)):
+                raise e
+            raise AppException(message=f"Failed to delete file: {str(e)}")
 
 
 # Service instance

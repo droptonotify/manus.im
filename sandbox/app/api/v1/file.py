@@ -1,16 +1,18 @@
 """
 File operation API interfaces
 """
-from fastapi import APIRouter, UploadFile, File, Form
+from fastapi import APIRouter, UploadFile, File, Form, Depends
 from fastapi.responses import FileResponse
+from app.api.dependencies import verify_token
 from app.schemas.file import (
     FileReadRequest, FileWriteRequest, FileReplaceRequest,
-    FileSearchRequest, FileFindRequest
+    FileSearchRequest, FileFindRequest, FileDeleteRequest
 )
 from app.schemas.response import Response
 from app.services.file import file_service
+from app.models.delete_file import FileDeleteResult
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(verify_token)])
 
 @router.post("/read", response_model=Response)
 async def read_file(request: FileReadRequest):
@@ -144,4 +146,19 @@ async def download_file(path: str):
         path=path,
         filename=filename,
         media_type='application/octet-stream'
+    )
+
+@router.post("/delete", response_model=Response)
+async def delete_file(request: FileDeleteRequest):
+    """
+    Delete file
+    """
+    result = await file_service.delete_file(
+        file=request.file
+    )
+    
+    return Response(
+        success=True,
+        message="File deleted successfully",
+        data=result.model_dump()
     )
