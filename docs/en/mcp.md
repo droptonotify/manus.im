@@ -2,7 +2,7 @@
 
 ## Introduction
 
-MCP (Model Context Protocol) is an open standard protocol for providing secure connections between language model applications and external data sources and tools. In AI Sheikh, MCP allows AI assistants to access and use various external services and tools, such as GitHub API, file systems, databases, and more.
+MCP (Model Context Protocol) is an open standard protocol for providing secure connections between language model applications and external data sources and tools. In AI sheikh, MCP allows AI assistants to access and use various external services and tools, such as GitHub API, file systems, databases, and more.
 
 ## Demo
 
@@ -65,7 +65,7 @@ Configure MCP service in `docker-compose.yml`:
 ...
 services:
   backend:
-    image: simpleyyt/Sheikh-backend
+    image: simpleyyt/sheikh-backend
     volumes:
       - ./mcp.json:/etc/mcp.json  # Mount MCP configuration file
       - ...

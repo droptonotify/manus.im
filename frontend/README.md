@@ -1,4 +1,4 @@
-# AI Sheikh Frontend
+# AI sheikh Frontend
 
 English | [中文](README_zh.md)
 

@@ -18,7 +18,7 @@ services:
       - backend
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   backend:
     build:
@@ -45,7 +45,7 @@ services:
         required: true
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
     env_file:
       - .env
     environment:
@@ -71,7 +71,7 @@ services:
       - LOG_LEVEL=${LOG_LEVEL:-DEBUG}
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   mockserver:
     build:
@@ -86,7 +86,7 @@ services:
       - MOCK_DATA_FILE=default.yaml
       - MOCK_DELAY=1
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   mongodb:
     image: mongo:7.0
@@ -96,19 +96,19 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   redis:
     image: redis:7.0
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
 volumes:
   mongodb_data:
-    name: Sheikh-mongodb-data
+    name: sheikh-mongodb-data
 
 networks:
-  Sheikh-network:
-    name: Sheikh-network
+  sheikh-network:
+    name: sheikh-network
     driver: bridge

@@ -6,16 +6,16 @@ class Settings(BaseSettings):
     
     # Model provider configuration
     api_key: str | None = None
-    api_base: str = "https://api.deepseek.com/v1"
+    api_base: str = "https://generativelanguage.googleapis.com/v1beta/openai"
     
     # Model configuration
-    model_name: str = "deepseek-chat"
+    model_name: str = "gemini-2.0-flash"
     temperature: float = 0.7
     max_tokens: int = 2000
     
     # MongoDB configuration
     mongodb_uri: str = "mongodb://mongodb:27017"
-    mongodb_database: str = "Sheikh"
+    mongodb_database: str = "manus"
     mongodb_username: str | None = None
     mongodb_password: str | None = None
     

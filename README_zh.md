@@ -1,14 +1,14 @@
-# AI Sheikh
+# AI sheikh
 
-[English](README.md) | 中文 | [文档](https://docs.ai-Sheikh.com)
+[English](README.md) | 中文 | [文档](https://docs.ai-sheikh.com)
 
-[![GitHub stars](https://img.shields.io/github/stars/simpleyyt/ai-Sheikh?style=social)](https://github.com/simpleyyt/ai-Sheikh/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/simpleyyt/ai-sheikh?style=social)](https://github.com/simpleyyt/ai-sheikh/stargazers)
 &ensp;
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AI Sheikh 是一个通用的 AI Agent 系统，支持在沙盒环境中运行各种工具和操作。
+AI sheikh 是一个通用的 AI Agent 系统，支持在沙盒环境中运行各种工具和操作。
 
-用 AI Sheikh 开启你的智能体之旅吧！
+用 AI sheikh 开启你的智能体之旅吧！
 
 👏 欢迎加入 [QQ群(1005477581)](https://qun.qq.com/universal-share/share?ac=1&authKey=p4X3Da5iMpR4liAenxwvhs7IValPKiCFtUevRlJouz9qSTSZsMnPJc3hzsJjgQYv&busi_data=eyJncm91cENvZGUiOiIxMDA1NDc3NTgxIiwidG9rZW4iOiJNZmUrTmQ0UzNDZDNqNDFVdjVPS1VCRkJGRWVlV0R3RFJSRVFoZDAwRjFDeUdUM0t6aUIyczlVdzRjV1BYN09IIiwidWluIjoiMzQyMjExODE1In0%3D&data=C3B-E6BlEbailV32co77iXL5vxPIhtD9y_itWLSq50hKqosO_55_isOZym2Faaq4hs9-517tUY8GSWaDwPom-A&svctype=4&tempid=h5_group_info)
 
@@ -69,19 +69,19 @@ https://github.com/user-attachments/assets/5cb2240b-0984-4db0-8818-a24f81624b04
 ```yaml
 services:
   frontend:
-    image: simpleyyt/Sheikh-frontend
+    image: simpleyyt/sheikh-frontend
     ports:
       - "5173:80"
     depends_on:
       - backend
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
     environment:
       - BACKEND_URL=http://backend:8000
 
   backend:
-    image: simpleyyt/Sheikh-backend
+    image: simpleyyt/sheikh-backend
     depends_on:
       - sandbox
     restart: unless-stopped
@@ -89,7 +89,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       #- ./mcp.json:/etc/mcp.json # Mount MCP servers directory
     networks:
-      - Sheikh-network
+      - sheikh-network
     environment:
       # OpenAI API base URL
       - API_BASE=https://api.openai.com/v1
@@ -105,7 +105,7 @@ services:
       # MongoDB connection URI
       #- MONGODB_URI=mongodb://mongodb:27017
       # MongoDB database name
-      #- MONGODB_DATABASE=Sheikh
+      #- MONGODB_DATABASE=sheikh
       # MongoDB username (optional)
       #- MONGODB_USERNAME=
       # MongoDB password (optional)
@@ -123,13 +123,13 @@ services:
       # Sandbox server address (optional)
       #- SANDBOX_ADDRESS=
       # Docker image used for the sandbox
-      - SANDBOX_IMAGE=simpleyyt/Sheikh-sandbox
+      - SANDBOX_IMAGE=simpleyyt/sheikh-sandbox
       # Prefix for sandbox container names
       - SANDBOX_NAME_PREFIX=sandbox
       # Time-to-live for sandbox containers in minutes
       - SANDBOX_TTL_MINUTES=30
       # Docker network for sandbox containers
-      - SANDBOX_NETWORK=Sheikh-network
+      - SANDBOX_NETWORK=sheikh-network
       # Chrome browser arguments for sandbox (optional)
       #- SANDBOX_CHROME_ARGS=
       # HTTPS proxy for sandbox (optional)
@@ -172,11 +172,11 @@ services:
       - LOG_LEVEL=INFO
 
   sandbox:
-    image: simpleyyt/Sheikh-sandbox
+    image: simpleyyt/sheikh-sandbox
     command: /bin/sh -c "exit 0"  # prevent sandbox from starting, ensure image is pulled
     restart: "no"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   mongodb:
     image: mongo:7.0
@@ -186,21 +186,21 @@ services:
     #ports:
     #  - "27017:27017"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   redis:
     image: redis:7.0
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
 volumes:
   mongodb_data:
-    name: Sheikh-mongodb-data
+    name: sheikh-mongodb-data
 
 networks:
-  Sheikh-network:
-    name: Sheikh-network
+  sheikh-network:
+    name: sheikh-network
     driver: bridge
 ```
 <!-- /docker-compose-example.yml -->
@@ -213,7 +213,7 @@ docker compose up -d
 
 > 注意：如果提示`sandbox-1 exited with code 0`，这是正常的，这是为了让 sandbox 镜像成功拉取到本地。
 
-打开浏览器访问<http://localhost:5173>即可访问 Sheikh。
+打开浏览器访问<http://localhost:5173>即可访问 sheikh。
 
 ## 开发指南
 
@@ -221,9 +221,9 @@ docker compose up -d
 
 本项目由三个独立的子项目组成：
 
-* `frontend`: Sheikh 前端
-* `backend`: Sheikh 后端
-* `sandbox`: Sheikh 沙盒
+* `frontend`: sheikh 前端
+* `backend`: sheikh 后端
+* `sandbox`: sheikh 沙盒
 
 ### 整体设计
 
@@ -248,8 +248,8 @@ docker compose up -d
 
 1. 下载项目：
 ```bash
-git clone https://github.com/simpleyyt/ai-Sheikh.git
-cd ai-Sheikh
+git clone https://github.com/simpleyyt/ai-sheikh.git
+cd ai-sheikh
 ```
 
 2. 复制配置文件：
@@ -272,7 +272,7 @@ MAX_TOKENS=2000
 
 # MongoDB configuration
 #MONGODB_URI=mongodb://mongodb:27017
-#MONGODB_DATABASE=Sheikh
+#MONGODB_DATABASE=sheikh
 #MONGODB_USERNAME=
 #MONGODB_PASSWORD=
 
@@ -284,10 +284,10 @@ MAX_TOKENS=2000
 
 # Sandbox configuration
 #SANDBOX_ADDRESS=
-SANDBOX_IMAGE=simpleyyt/Sheikh-sandbox
+SANDBOX_IMAGE=simpleyyt/sheikh-sandbox
 SANDBOX_NAME_PREFIX=sandbox
 SANDBOX_TTL_MINUTES=30
-SANDBOX_NETWORK=Sheikh-network
+SANDBOX_NETWORK=sheikh-network
 #SANDBOX_CHROME_ARGS=
 #SANDBOX_HTTPS_PROXY=
 #SANDBOX_HTTP_PROXY=

@@ -11,7 +11,7 @@ from typing import Optional, BinaryIO
 from fastapi import UploadFile
 from app.models.file import (
     FileReadResult, FileWriteResult, FileReplaceResult,
-    FileSearchResult, FileFindResult, FileUploadResult
+    FileSearchResult, FileFindResult, FileUploadResult, FileDeleteResult
 )
 from app.core.exceptions import AppException, ResourceNotFoundException, BadRequestException
 

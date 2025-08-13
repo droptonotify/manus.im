@@ -374,11 +374,11 @@ class PlaywrightBrowser:
                     text = text.substring(0, 97) + '...';
                 }
                 
-                // Only add data-Sheikh-id attribute to elements that meet the conditions
-                element.setAttribute('data-Sheikh-id', `Sheikh-element-${validElementIndex}`);
+                // Only add data-sheikh-id attribute to elements that meet the conditions
+                element.setAttribute('data-sheikh-id', `sheikh-element-${validElementIndex}`);
                                                         
-                // Build selector - using only data-Sheikh-id
-                const selector = `[data-Sheikh-id="Sheikh-element-${validElementIndex}"]`;
+                // Build selector - using only data-sheikh-id
+                const selector = `[data-sheikh-id="sheikh-element-${validElementIndex}"]`;
                 
                 // Add element information to the array
                 interactiveElements.push({
@@ -435,7 +435,7 @@ class PlaywrightBrowser:
 
     
     async def _get_element_by_index(self, index: int) -> Optional[Any]:
-        """Get element by index using data-Sheikh-id selector
+        """Get element by index using data-sheikh-id selector
         
         Args:
             index: Element index
@@ -447,8 +447,8 @@ class PlaywrightBrowser:
         if not hasattr(self.page, 'interactive_elements_cache') or not self.page.interactive_elements_cache or index >= len(self.page.interactive_elements_cache):
             return None
         
-        # Use data-Sheikh-id selector
-        selector = f'[data-Sheikh-id="Sheikh-element-{index}"]'
+        # Use data-sheikh-id selector
+        selector = f'[data-sheikh-id="sheikh-element-{index}"]'
         return await self.page.query_selector(selector)
     
     async def click(

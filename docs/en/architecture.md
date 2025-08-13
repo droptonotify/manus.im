@@ -4,10 +4,10 @@
 
 ![Architecture Diagram](https://github.com/user-attachments/assets/69775011-1eb7-452f-adaf-cd6603a4dde5)
 
-AI Sheikh is a general-purpose AI Agent system designed to execute complex tasks in a secure, sandboxed environment. The system's architecture is composed of three primary components: a web-based frontend, a backend server, and a sandbox environment. This modular design promotes a clear separation of concerns, which enhances security, scalability, and maintainability.
+AI sheikh is a general-purpose AI Agent system designed to execute complex tasks in a secure, sandboxed environment. The system's architecture is composed of three primary components: a web-based frontend, a backend server, and a sandbox environment. This modular design promotes a clear separation of concerns, which enhances security, scalability, and maintainability.
 
-- **Frontend (Sheikh Web):** A rich client interface that serves as the user's command center. It allows users to initiate tasks, monitor the agent's progress in real-time, and directly interact with the tools the agent is using, such as a web browser or a shell.
-- **Backend (Sheikh Server):** The brain of the operation. It manages the agent's lifecycle, interprets user requests, and orchestrates the execution of tasks by invoking tools within the sandbox. It maintains the state of the conversation and streams updates to the frontend.
+- **Frontend (sheikh Web):** A rich client interface that serves as the user's command center. It allows users to initiate tasks, monitor the agent's progress in real-time, and directly interact with the tools the agent is using, such as a web browser or a shell.
+- **Backend (sheikh Server):** The brain of the operation. It manages the agent's lifecycle, interprets user requests, and orchestrates the execution of tasks by invoking tools within the sandbox. It maintains the state of the conversation and streams updates to the frontend.
 - **Sandbox:** An isolated Docker container that provides a secure execution environment for the agent's tools. Each task is allocated a dedicated sandbox, preventing any potential interference with the host system or other tasks.
 
 ### Workflow
@@ -20,9 +20,9 @@ The system's workflow is designed to be robust and transparent. When a user init
 4.  **Real-time Feedback:** Throughout the process, all events—such as the agent's plan, tool usage, and results—are streamed from the Backend to the Frontend using Server-Sent Events (SSE), providing the user with a live view of the agent's activities.
 5.  **Interactive Control:** The Frontend provides a view of the tools being used (e.g., a VNC view of the browser). This allows the user to observe the agent's actions and, if necessary, take over manual control.
 
-## Frontend (Sheikh Web)
+## Frontend (sheikh Web)
 
-The frontend is a modern, single-page application (SPA) that provides a dynamic and responsive user interface for interacting with the AI Sheikh system.
+The frontend is a modern, single-page application (SPA) that provides a dynamic and responsive user interface for interacting with the AI sheikh system.
 
 ### Responsibilities
 
@@ -46,9 +46,9 @@ The frontend is built with a modern, robust tech stack:
 - **VNC Client:** [`@novnc/novnc`](https://github.com/novnc/noVNC) for rendering the remote desktop of the sandbox's browser.
 - **Code Editor:** [Monaco Editor](https://microsoft.github.io/monaco-editor/) for displaying and editing code.
 
-## Backend (Sheikh Server)
+## Backend (sheikh Server)
 
-The backend server is the core of the AI Sheikh system, acting as the central nervous system that orchestrates the agent's behavior and manages the overall workflow.
+The backend server is the core of the AI sheikh system, acting as the central nervous system that orchestrates the agent's behavior and manages the overall workflow.
 
 ### Responsibilities
 
@@ -74,7 +74,7 @@ The backend is a high-performance asynchronous application built on Python.
 
 ## Sandbox
 
-The sandbox is a critical component of the AI Sheikh architecture, providing a secure and isolated environment for the agent to perform its tasks. Each agent session is allocated its own dedicated sandbox, which is a Docker container built on a customized Ubuntu image.
+The sandbox is a critical component of the AI sheikh architecture, providing a secure and isolated environment for the agent to perform its tasks. Each agent session is allocated its own dedicated sandbox, which is a Docker container built on a customized Ubuntu image.
 
 ### Purpose
 
@@ -96,7 +96,7 @@ The sandbox runs a suite of services, managed by `supervisord`, to provide the a
 
 ## Communication Protocols
 
-The components of the AI Sheikh system communicate through a set of well-defined protocols, ensuring a clear and efficient flow of information.
+The components of the AI sheikh system communicate through a set of well-defined protocols, ensuring a clear and efficient flow of information.
 
 ### Frontend ↔ Backend
 
@@ -118,7 +118,7 @@ This setup allows the user to see and interact with the sandboxed browser in rea
 
 ## Development Guide
 
-This guide provides a high-level overview for developers who want to contribute to the AI Sheikh project, with a focus on how to add new tools to the agent.
+This guide provides a high-level overview for developers who want to contribute to the AI sheikh project, with a focus on how to add new tools to the agent.
 
 ### Adding a New Tool
 

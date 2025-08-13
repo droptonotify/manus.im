@@ -1,8 +1,8 @@
-# AI Sheikh Backend Service
+# AI sheikh Backend Service
 
 English | [中文](README_zh.md)
 
-AI Sheikh is an intelligent conversation agent system based on FastAPI and OpenAI API. The backend adopts Domain-Driven Design (DDD) architecture, supporting intelligent dialogue, file operations, Shell command execution, and browser automation.
+AI sheikh is an intelligent conversation agent system based on FastAPI and OpenAI API. The backend adopts Domain-Driven Design (DDD) architecture, supporting intelligent dialogue, file operations, Shell command execution, and browser automation.
 
 ## Project Architecture
 
@@ -80,14 +80,14 @@ GOOGLE_SEARCH_API_KEY=                   # Google Search API key for web search 
 GOOGLE_SEARCH_ENGINE_ID=                 # Google custom search engine ID (optional)
 
 # Sandbox configuration
-SANDBOX_IMAGE=simpleyyt/Sheikh-sandbox          # Sandbox environment Docker image
+SANDBOX_IMAGE=simpleyyt/sheikh-sandbox          # Sandbox environment Docker image
 SANDBOX_NAME_PREFIX=sandbox              # Sandbox container name prefix
 SANDBOX_TTL_MINUTES=30                   # Sandbox container time-to-live (minutes)
-SANDBOX_NETWORK=Sheikh-network            # Docker network name for communication between sandbox containers
+SANDBOX_NETWORK=sheikh-network            # Docker network name for communication between sandbox containers
 
 # Database configuration
 MONGODB_URL=mongodb://localhost:27017    # MongoDB connection URL
-MONGODB_DATABASE=Sheikh                   # MongoDB database name
+MONGODB_DATABASE=sheikh                   # MongoDB database name
 REDIS_URL=redis://localhost:6379/0       # Redis connection URL
 
 # Log configuration
@@ -107,10 +107,10 @@ The service will start at http://localhost:8000.
 ### Docker Deployment
 ```bash
 # Build Docker image
-docker build -t Sheikh-ai-agent .
+docker build -t sheikh-ai-agent .
 
 # Run container
-docker run -p 8000:8000 --env-file .env -v /var/run/docker.sock:/var/run/docker.sock Sheikh-ai-agent
+docker run -p 8000:8000 --env-file .env -v /var/run/docker.sock:/var/run/docker.sock sheikh-ai-agent
 ```
 
 > Note: If using Docker deployment, you need to mount the Docker socket so the backend can create sandbox containers.

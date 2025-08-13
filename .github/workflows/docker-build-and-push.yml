@@ -42,7 +42,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_REGISTRY }}/Sheikh-${{ matrix.component }}
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_REGISTRY }}/sheikh-${{ matrix.component }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr

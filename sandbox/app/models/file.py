@@ -41,3 +41,10 @@ class FileUploadResult(BaseModel):
     file_path: str = Field(..., description="Path of the uploaded file")
     file_size: int = Field(..., description="Size of the uploaded file in bytes")
     success: bool = Field(..., description="Whether upload was successful")
+
+
+class FileDeleteResult(BaseModel):
+    """File delete result"""
+    file: str = Field(..., description="Path of the deleted file")
+    deleted: bool = Field(..., description="Whether deletion was successful")
+    message: str = Field(..., description="Status message")

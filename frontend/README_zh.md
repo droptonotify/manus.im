@@ -1,4 +1,4 @@
-# AI Sheikh 前端
+# AI sheikh 前端
 
 [English](README.md) | 中文
 

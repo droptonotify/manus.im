@@ -1,7 +1,7 @@
 <template>
     <div class="w-full min-h-[100vh] relative bg-[var(--background-gray-main)] dark:bg-[#050505]">
         <div
-            class="sticky top-0 left-0 w-full z-[10] px-[48px] max-sm:px-[12px] max-sm:bg-[var(--background-gray-login)]">
+            class="sticky top-0 left-0 w-full z-[10] px-[48import ManusLogoTextIcon from '../components/icons/ManusLogoTextIcon.vue';x] max-sm:px-[12px] max-sm:bg-[var(--background-gray-login)]">
             <div class="w-full h-[60px] mx-auto flex items-center justify-between text-[var(--text-primary)]">
                 <a href="/">
                     <div class="flex">
@@ -19,7 +19,7 @@
                         <Bot :size="80" />
                     </div>
                     <h1 class="text-[20px] font-bold text-center text-[var(--text-primary)] max-sm:text-[18px]">
-                        {{ isRegistering ? t('Register to Sheikh') : t('Login to Sheikh') }}
+                        {{ isRegistering ? t('Register to manus') : t('Login to manus') }}
                     </h1>
                 </div>
             </div>
@@ -312,7 +312,7 @@ const handleSubmit = async () => {
         password: formData.value.password
       })
       // Registration success message
-      showSuccessToast(t('Registration successful! Welcome to Sheikh'))
+      showSuccessToast(t('Registration successful! Welcome to manus'))
     } else {
       await login({
         email: formData.value.email,

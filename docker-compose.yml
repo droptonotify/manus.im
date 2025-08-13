@@ -1,6 +1,6 @@
 services:
   frontend:
-    image: ${IMAGE_REGISTRY:-simpleyyt}/Sheikh-frontend:${IMAGE_TAG:-latest}
+    image: ${IMAGE_REGISTRY:-simpleyyt}/sheikh-frontend:${IMAGE_TAG:-latest}
     build:
       context: ./frontend
       dockerfile: Dockerfile
@@ -14,12 +14,12 @@ services:
       - backend
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
     environment:
       - BACKEND_URL=http://backend:8000
 
   backend:
-    image: ${IMAGE_REGISTRY:-simpleyyt}/Sheikh-backend:${IMAGE_TAG:-latest}
+    image: ${IMAGE_REGISTRY:-simpleyyt}/sheikh-backend:${IMAGE_TAG:-latest}
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -36,12 +36,12 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       #- ./mcp.json:/etc/mcp.json # Mount MCP servers directory
     networks:
-      - Sheikh-network
+      - sheikh-network
     env_file:
       - .env
 
   sandbox:
-    image: ${IMAGE_REGISTRY:-simpleyyt}/Sheikh-sandbox:${IMAGE_TAG:-latest}
+    image: ${IMAGE_REGISTRY:-simpleyyt}/sheikh-sandbox:${IMAGE_TAG:-latest}
     build:
       context: ./sandbox
       dockerfile: Dockerfile
@@ -52,7 +52,7 @@ services:
     command: /bin/sh -c "exit 0"  # prevent sandbox from starting, ensure image is pulled
     restart: "no"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   mongodb:
     image: mongo:7.0
@@ -62,19 +62,19 @@ services:
     #ports:
     #  - "27017:27017"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   redis:
     image: redis:7.0
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
 volumes:
   mongodb_data:
-    name: Sheikh-mongodb-data
+    name: sheikh-mongodb-data
 
 networks:
-  Sheikh-network:
-    name: Sheikh-network
+  sheikh-network:
+    name: sheikh-network
     driver: bridge

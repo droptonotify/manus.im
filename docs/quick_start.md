@@ -34,19 +34,19 @@
 ```yaml
 services:
   frontend:
-    image: simpleyyt/Sheikh-frontend
+    image: simpleyyt/sheikh-frontend
     ports:
       - "5173:80"
     depends_on:
       - backend
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
     environment:
       - BACKEND_URL=http://backend:8000
 
   backend:
-    image: simpleyyt/Sheikh-backend
+    image: simpleyyt/sheikh-backend
     depends_on:
       - sandbox
     restart: unless-stopped
@@ -54,7 +54,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       #- ./mcp.json:/etc/mcp.json # Mount MCP servers directory
     networks:
-      - Sheikh-network
+      - sheikh-network
     environment:
       # OpenAI API base URL
       - API_BASE=https://api.openai.com/v1
@@ -70,7 +70,7 @@ services:
       # MongoDB connection URI
       #- MONGODB_URI=mongodb://mongodb:27017
       # MongoDB database name
-      #- MONGODB_DATABASE=Sheikh
+      #- MONGODB_DATABASE=sheikh
       # MongoDB username (optional)
       #- MONGODB_USERNAME=
       # MongoDB password (optional)
@@ -88,13 +88,13 @@ services:
       # Sandbox server address (optional)
       #- SANDBOX_ADDRESS=
       # Docker image used for the sandbox
-      - SANDBOX_IMAGE=simpleyyt/Sheikh-sandbox
+      - SANDBOX_IMAGE=simpleyyt/sheikh-sandbox
       # Prefix for sandbox container names
       - SANDBOX_NAME_PREFIX=sandbox
       # Time-to-live for sandbox containers in minutes
       - SANDBOX_TTL_MINUTES=30
       # Docker network for sandbox containers
-      - SANDBOX_NETWORK=Sheikh-network
+      - SANDBOX_NETWORK=sheikh-network
       # Chrome browser arguments for sandbox (optional)
       #- SANDBOX_CHROME_ARGS=
       # HTTPS proxy for sandbox (optional)
@@ -137,11 +137,11 @@ services:
       - LOG_LEVEL=INFO
 
   sandbox:
-    image: simpleyyt/Sheikh-sandbox
+    image: simpleyyt/sheikh-sandbox
     command: /bin/sh -c "exit 0"  # prevent sandbox from starting, ensure image is pulled
     restart: "no"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   mongodb:
     image: mongo:7.0
@@ -151,21 +151,21 @@ services:
     #ports:
     #  - "27017:27017"
     networks:
-      - Sheikh-network
+      - sheikh-network
 
   redis:
     image: redis:7.0
     restart: unless-stopped
     networks:
-      - Sheikh-network
+      - sheikh-network
 
 volumes:
   mongodb_data:
-    name: Sheikh-mongodb-data
+    name: sheikh-mongodb-data
 
 networks:
-  Sheikh-network:
-    name: Sheikh-network
+  sheikh-network:
+    name: sheikh-network
     driver: bridge
 ```
 <!-- /docker-compose-example.yml -->
@@ -178,4 +178,4 @@ docker compose up -d
 
 > 注意：如果提示`sandbox-1 exited with code 0`，这是正常的，这是为了让 sandbox 镜像成功拉取到本地。
 
-打开浏览器访问 <http://localhost:5173> 即可访问 Sheikh。
+打开浏览器访问 <http://localhost:5173> 即可访问 sheikh。

@@ -9,7 +9,7 @@
                     :rows="rows" :value="modelValue"
                     @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
                     @compositionstart="isComposing = true" @compositionend="isComposing = false"
-                    @keydown.enter.exact="handleEnterKeydown" :placeholder="t('Give Sheikh a task to work on...')"
+                    @keydown.enter.exact="handleEnterKeydown" :placeholder="t('Give sheikh a task to work on...')"
                     :style="{ height: '46px' }"></textarea>
             </div>
             <footer class="flex flex-row justify-between w-full px-3">
