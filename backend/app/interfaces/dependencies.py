@@ -14,7 +14,8 @@ from app.application.services.auth_service import AuthService
 from app.application.services.token_service import TokenService
 
 # Import all required dependencies for agent service
-from app.infrastructure.external.llm.openai_llm import OpenAILLM
+from app.core.config import get_settings
+from app.infrastructure.external.llm.google_genai_llm import GoogleGenAILLM
 from app.infrastructure.external.sandbox.docker_sandbox import DockerSandbox
 from app.infrastructure.external.task.redis_task import RedisStreamTask
 from app.infrastructure.utils.llm_json_parser import LLMJsonParser
@@ -38,7 +39,8 @@ def get_agent_service() -> AgentService:
     logger.info("Creating AgentService instance")
     
     # Create all dependencies
-    llm = OpenAILLM()
+    settings = get_settings()
+    llm = GoogleGenAILLM()
     agent_repository = MongoAgentRepository()
     session_repository = MongoSessionRepository()
     sandbox_cls = DockerSandbox

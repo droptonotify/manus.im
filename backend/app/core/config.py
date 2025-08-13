@@ -85,4 +85,4 @@ def get_settings() -> Settings:
     """Get application settings"""
     settings = Settings()
     settings.validate()
-    return settings 
+    return settings
