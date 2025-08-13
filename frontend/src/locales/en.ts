@@ -23,8 +23,8 @@ export default {
   'Thursday': 'Thu',
   'Friday': 'Fri',
   'Saturday': 'Sat',
-  'sheikh Computer': 'sheikh Computer',
-  'sheikh is using': 'sheikh is using',
+  'manus Computer': 'manus Computer',
+  'manus is using': 'manus is using',
   'Jump to live': 'Jump to live',
   'Failed to load file content': 'Failed to load file content',
     'Give manus a task to work on...': 'Give manus a task to work on...',
@@ -66,7 +66,7 @@ export default {
   'Register': 'Register',
   'Login': 'Login',
   'Already have an account?': 'Already have an account?',
-  'Don't have an account?': 'Don't have an account?',
+  'Don\'t have an account?': 'Don\'t have an account?',
   'Authentication failed, please try again': 'Authentication failed, please try again',
   'Registration successful! Welcome to manus': 'Registration successful! Welcome to manus',
   'Login successful! Welcome back': 'Login successful! Welcome back',
@@ -145,21 +145,7 @@ export default {
   // Login/Register Page
   'Login to sheikh': 'Login to sheikh',
   'Register to sheikh': 'Register to sheikh',
-  'Full Name': 'Full Name',
-  'Email': 'Email',
-  'Password': 'Password',
-  'Confirm Password': 'Confirm Password',
-  'Enter your full name': 'Enter your full name',
-  'Enter password': 'Enter password',
-  'Enter password again': 'Enter password again',
-  'Processing...': 'Processing...',
-  'Login': 'Login',
-  'Register': 'Register',
-  'Already have an account?': 'Already have an account?',
-  'Don\'t have an account?': 'Don\'t have an account?',
-  'Login successful! Welcome back': 'Login successful! Welcome back',
   'Registration successful! Welcome to sheikh': 'Registration successful! Welcome to sheikh',
-  'Authentication failed, please try again': 'Authentication failed, please try again',
   'Passwords do not match': 'Passwords do not match',
   // Validation error messages
   'Full name must be at least 2 characters long': 'Full name must be at least 2 characters long',
@@ -170,4 +156,4 @@ export default {
   'Logout': 'Logout',
   'Unknown User': 'Unknown User',
   'No email': 'No email'
-} 
+}

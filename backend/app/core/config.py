@@ -6,10 +6,10 @@ class Settings(BaseSettings):
     
     # Model provider configuration
     api_key: str | None = None
-    api_base: str = "https://generativelanguage.googleapis.com/v1beta/openai"
+    api_base: str = "https://generativelanguage.googleapis.com/v1beta/models"
     
     # Model configuration
-    model_name: str = "gemini-2.0-flash"
+    model_name: str = "gemini-1.0-pro"
     temperature: float = 0.7
     max_tokens: int = 2000
     
